@@ -15,6 +15,7 @@ def send():
     msg = my_msg.get()
     my_msg.set("")
     s.send(bytes(msg,'utf8'))
+    
     if msg=='#quit':
         s.close()
         window.close()
@@ -47,7 +48,8 @@ entry_field.pack()
 send_Button = Button(window,text="SEND",font='Aerial',fg='white',command=send)
 send_Button.pack()
 
-quite_Button = Button(window,text='QUIT',font='Aerial',fg='white',command=on_closing)
+quit_Button = Button(window,text='QUIT',font='Aerial',fg='white',command=on_closing)
+quit_Button.pack()
 
 Host='127.0.0.1'
 Port=8080
