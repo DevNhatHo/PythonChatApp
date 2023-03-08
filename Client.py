@@ -3,6 +3,25 @@ import socket
 from tkinter import *
 from threading import Thread
 
+def receive():
+    while True:
+        try:
+            msg = s.recv(1024).decode('utf8')
+            msg_list.insert(tkinter.END,msg)
+        except:
+            print("There is an error recieving the message")
+
+def send():
+    msg = my_msg.get()
+    my_msg.set("")
+    s.send(bytes(msg,'utf8'))
+    if msg=='#quit':
+        s.close()
+        window.close()
+
+def on_closing():
+    my_msg.set('#quit')
+    send()
 window = Tk()
 window.title("Chatroom")
 window.configure(bg="gray")
